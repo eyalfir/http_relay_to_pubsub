@@ -27,7 +27,7 @@ def hello():
             'headers': dict(request.headers),
             'method': request.method
     }
-    print(pubsub_payload)
+    app.logger.debug(pubsub_payload)
     publisher.publish(topic_path, data=json.dumps(pubsub_payload).encode('utf-8'))
     return '', 200
 
