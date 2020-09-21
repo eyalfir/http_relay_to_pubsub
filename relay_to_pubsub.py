@@ -24,7 +24,7 @@ def hello():
         return Response(request.json['challenge'], mimetype="text/plain")
     pubsub_payload = {
             'body': request.get_data().decode('utf-8'),
-            'headers': dict(request.headers).iter_items(),
+            'headers': dict(request.headers),
             'method': request.method
     }
     print(pubsub_payload)
