@@ -22,12 +22,8 @@ def callback(f):
 def hello():
     if request.json and 'challenge' in request.json:
         return Response(request.json['challenge'], mimetype="text/plain")
-    if request.is_json:
-        body = json.dumps(request.json)
-    else:
-        body = request.get_data(cache=False).decode('utf-8')
     pubsub_payload = {
-            'body': body,
+            'body': request.get_data().decode('utf-8'),
             'headers': dict(request.headers),
             'method': request.method
     }
